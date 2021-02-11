@@ -28,5 +28,21 @@ module.exports = {
             notEmpty: true,
             errorMessage: 'Estado nao preenchido'
         }
+    }),
+    signin: checkSchema({
+        email: { 
+            isEmail: true,
+            normalizeEmail: true,
+            errorMessage: 'E-mail invalido'
+        },
+        password: { 
+            isLength: { 
+
+                options: { min: 2}
+
+            },
+            errorMessage: 'Senha precisa ter pelo menos 2 caracteres'
+        },
+
     })
 }
