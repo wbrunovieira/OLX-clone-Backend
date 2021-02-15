@@ -65,6 +65,7 @@ module.exports = {
             if(mongoose.Types.ObjectId.isValid(data.state)){
                 const stateCheck = await State.findById(data.state);
                 if(!stateCheck){
+
                     res.json({error: 'Estado nao existe'});
                     return;
                 }
@@ -77,7 +78,7 @@ module.exports = {
                 update.passwordHash = await bcrypt.hash(data.password, 10)
             }
     
-        await User.findByIdAndUpdate({token: data.token}, {$set: updates});
+        await User.findOneAndUpdate({token: data.token}, {$set: updates});
     
         res.json({})
     }; 
